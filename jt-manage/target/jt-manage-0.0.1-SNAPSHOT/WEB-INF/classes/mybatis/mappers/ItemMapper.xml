@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jt.mapper.ItemMapper">
+	<delete id="deleteByIds">
+		delete from tb_item 
+		<where>
+		<foreach collection="ids" item="id" >
+		 or id=#{id}
+		</foreach>
+		</where>
+	</delete>
+	<update id="updateItemState">
+		update tb_item set status=#{status},updated=#{date}
+		<where>
+			<foreach collection="ids" item="id" >
+				or id=#{id}
+			</foreach>
+		</where>
+	</update>
+</mapper>
